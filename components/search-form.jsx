@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 
 const SearchForm = ({ onSearch }) => {
   const [formData, setFormData] = useState({
@@ -20,8 +19,15 @@ const SearchForm = ({ onSearch }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/search', formData);
-      onSearch(response.data);
+      const response = await fetch('/api/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      onSearch(data);
     } catch (error) {
       console.error('Error fetching itinerary:', error);
     }
