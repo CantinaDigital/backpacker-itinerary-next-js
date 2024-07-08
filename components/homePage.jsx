@@ -4,30 +4,16 @@ import axios from 'axios';
 const HomePage = ({ onSearch }) => {
   const [formData, setFormData] = useState({
     from: '',
-    homeBase: '',
-    length: '',
-    destinationsCount: '',
-    budget: '',
-    destinations: []
+    to: '',
+    departureDate: '',
+    returnDate: '',
+    passengers: 1
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    });
-  };
-
-  const handleDestinationsChange = (index, value) => {
-    const updatedDestinations = [...formData.destinations];
-    updatedDestinations[index] = value;
-    setFormData({ ...formData, destinations: updatedDestinations });
-  };
-
-  const handleAddDestination = () => {
-    setFormData({
-      ...formData,
-      destinations: [...formData.destinations, '']
     });
   };
 
@@ -43,18 +29,14 @@ const HomePage = ({ onSearch }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="from" placeholder="Taking off from" value={formData.from} onChange={handleChange} />
-      <input type="text" name="homeBase" placeholder="Main destination/home base" value={formData.homeBase} onChange={handleChange} />
-      <input type="number" name="length" placeholder="Length of journey" value={formData.length} onChange={handleChange} />
-      <input type="number" name="destinationsCount" placeholder="Number of destinations" value={formData.destinationsCount} onChange={handleChange} />
-      {formData.destinations.map((destination, index) => (
-        <input key={index} type="text" placeholder={`Destination ${index + 1}`} value={destination} onChange={(e) => handleDestinationsChange(index, e.target.value)} />
-      ))}
-      <button type="button" onClick={handleAddDestination}>Add Destination</button>
-      <input type="number" name="budget" placeholder="Budget in USD" value={formData.budget} onChange={handleChange} />
+      <input type="text" name="from" placeholder="Origin city, country" value={formData.from} onChange={handleChange} />
+      <input type="text" name="to" placeholder="Destination city, country" value={formData.to} onChange={handleChange} />
+      <input type="date" name="departureDate" placeholder="Departure date" value={formData.departureDate} onChange={handleChange} />
+      <input type="date" name="returnDate" placeholder="Return date" value={formData.returnDate} onChange={handleChange} />
+      <input type="number" name="passengers" placeholder="Number of passengers" value={formData.passengers} onChange={handleChange} min="1" />
       <button type="submit">Search</button>
     </form>
   );
 };
 
-export default HomePage;
+export default homePage;

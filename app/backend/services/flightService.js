@@ -1,17 +1,18 @@
 const axios = require('axios');
 
-const getFlights = async (from, to) => {
+const getFlights = async (from, to, departureDate, returnDate, passengers) => {
   try {
-    const response = await axios.get('https://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/US/USD/en-US/', {
+    const response = await axios.get('https://rapidapi.com/flight-https://rapidapi.com/ntd119/api/sky-scanner3', {
+      headers: {
+        'X-RapidAPI-Key': '96c87ada63msh67bbef2a1951985p12a0b5jsn0977d3897eea',
+        'X-RapidAPI-Host': 'skyscanner.p.rapidapi.com'
+      },
       params: {
-        apiKey: 'YOUR_API_KEY',
-        country: 'US',
-        currency: 'USD',
-        locale: 'en-US',
-        originPlace: from,
-        destinationPlace: to,
-        outboundDate: '2023-09-01', // Example date, should be dynamic
-        adults: 1 // Example passenger count, should be dynamic
+        origin: from,
+        destination: to,
+        departureDate,
+        returnDate,
+        adults: passengers
       }
     });
 
