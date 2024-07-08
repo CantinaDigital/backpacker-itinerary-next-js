@@ -7,8 +7,8 @@ import { RandomQuote } from 'components/random-quote';
 import { Markdown } from 'components/markdown';
 import { ContextAlert } from 'components/context-alert';
 import { getNetlifyContext } from 'utils';
-import { SearchForm } from 'components/search-form';
-import { Itinerary } from 'components/itinerary';
+import  SearchForm from 'components/search-form';
+import  Itinerary  from 'components/itinerary';
 
 const cards = [
   //{ text: 'Hello', linkText: 'someLink', href: '/' }
